@@ -1,0 +1,45 @@
+.total-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+.meal-results-container {
+    width: 600px;
+    margin-left: 100px;
+}
+
+.meals-container{
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-right: 80px;
+
+ }
+ 
+ .clay {
+    width: 300px;
+    margin: 20px;
+    height: 320px;
+}
+
+
+.add-btn {
+    margin: 20px 0;
+}
+
+.meal-total {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    border: 1px solid black ;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+
+.meal-total p {
+    padding-top: 10px;
+}
+.create-mealplan-btn {
+    margin-top: 20px;
+}

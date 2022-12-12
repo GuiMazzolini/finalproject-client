@@ -1,0 +1,21 @@
+.img-home {
+    width: 500px !important;
+    align-self: center !important;
+    margin-top: 50px;
+}
+
+h1 {
+    margin-top: 50px !important;
+    margin-bottom: 30px !important;
+}
+
+.container-card {
+    width: 600px !important;
+    
+}
+
+.new-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

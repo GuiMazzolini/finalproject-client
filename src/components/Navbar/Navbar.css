@@ -1,0 +1,23 @@
+.navbar {
+    border-bottom: solid 1px white;
+}
+
+.navbar-link, .navbar {
+    background-color: #008148 !important;
+    color: whitesmoke !important;
+    text-shadow: 1px 1px 1px black; 
+}
+
+.navbar-link:hover {
+    color: aquamarine !important;
+
+}
+
+.welcome-msg {
+    margin-top: 8px;
+    margin-left: 30px;
+}
+
+.welcome-msg:hover {
+    color: whitesmoke !important;
+}
