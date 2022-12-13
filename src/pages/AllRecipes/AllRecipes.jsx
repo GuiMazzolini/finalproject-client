@@ -4,16 +4,7 @@ import { useState, useEffect } from "react";
 import RecipeCard from '../../components/RecipeCard/RecipeCard';
 
 
-function AllRecipes() {
-    const [recipes, setRecipes] = useState([])
-
-    useEffect(() => {
-      service.getRecipes()
-      .then((data) => {
-        setRecipes(data)
-      })
-      .catch((err) => console.log(err));
-    }, [])
+function AllRecipes({recipes}) {
 
     return (
         <>

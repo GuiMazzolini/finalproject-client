@@ -5,12 +5,10 @@ import PlannerRecipeCard from '../../components/RecipeCard/PlannerRecipeCard';
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { useNavigate } from "react-router-dom";
-import service from "../../services/service"
 
 
-function RecipePlanner() {
+function RecipePlanner({recipes}) {
 
-    const [allRecipes, setAllRecipes] = useState([])
     const [recipesInPlanner, setRecipesInPlanner] = useState([])
     const [selectedRecipes, setSelectedRecipes] = useState([])
 
@@ -23,29 +21,31 @@ function RecipePlanner() {
       user && setUserId(user._id)
     }, [user])
       
-
-    useEffect(() => {
-        PlannerService
-        .getRecipes()
-        .then((data) => {
-          setAllRecipes(data)
-        })
-        .catch((err) => console.log(err));
-      }, [])
-
-
       const handleClick = () => {
        PlannerService
        .createPlanner(user, recipesInPlanner)
        setRecipesInPlanner("")
+
+       navigate("/shoppinglist")
       }
 
-      // const handleSelect = () => {
-      //   const count = 0
-      //   if (recipesInPlanner.findIndex((obj => obj._id == 1)))
-      //   count++
-      //   console.log(count)
-      // }
+      const handleSelect = (recipe) => {
+      let objectIndex = recipesInPlanner.findIndex((eachRecipe) => {
+        return eachRecipe._id === recipe._id
+      })
+      if (objectIndex < 0) {
+        recipe.quantity=1
+        setRecipesInPlanner([recipe, ...recipesInPlanner])
+      }
+      else {
+        let array = [...recipesInPlanner]; 
+        array[objectIndex].quantity++;
+        setRecipesInPlanner([...array])
+      }
+      console.log("OBJECT", recipesInPlanner[objectIndex])
+
+
+      }
 
 
       function deleteRecipe(item) {
@@ -63,15 +63,12 @@ return (
             <h1 className='recipes-title'>Create Your Meal Plan</h1>
           <div className="total-container">
             <div className='meals-container'>
-                {allRecipes.map((recipe) => (
+                {recipes.map((recipe) => (
                   <>
-                   <div className="clay">
+                   <div className="clay clay-size">
                   <PlannerRecipeCard key={recipe._id} {...recipe}/>
                   <img className="add-btn" src="https://icons.iconarchive.com/icons/martz90/circle-addon1/48/text-plus-icon.png" width="25px" alt="add button" value={recipe._id}
-                  onClick={() =>{ setRecipesInPlanner([recipe, ...recipesInPlanner]);
-                      //  const filtered = recipesInPlanner.filter((one) => one._id == recipe._id)
-
-                }} />
+                  onClick={() =>{ handleSelect(recipe)}} />
 
                   </div>
                 </>
@@ -83,12 +80,12 @@ return (
             return  <div className="meal-total">
                 <img src={each.imageUrl}  width="80px" height="80px"/>
                 <p>{each.name}</p>
-                <p></p>
+                <p>{each.quantity}</p>
                 <img src="https://findicons.com/files/icons/1262/amora/256/delete.png" onClick={() => deleteRecipe(each)}
                 width="25px" height="25px" />
               </div>
 })}
-              <button className="create-mealplan-btn" onClick={handleClick}> Create Meal Plan</button>
+              <button className="create-mealplan-btn" onClick={handleClick}> Save and Create Shopping List</button>
             </div>
           </div>
   </>

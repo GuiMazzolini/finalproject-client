@@ -17,10 +17,10 @@ const PlannerService = {
     },
 
     getPlanner() {
-        return api.get("/Planner")
+        return api.get("/planner")
             .then((res) => res.data)
         },
-        
+
     createPlanner(user, recipes) {
         const plannerRecipe = {user: user, recipes}
     return api.post("/planner", plannerRecipe)

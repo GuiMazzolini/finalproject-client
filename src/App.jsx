@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-
+import { useState, useEffect } from "react";
+import service from "./services/service";
 import HomePage from "./pages/HomePage/HomePage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import SignupPage from "./pages/SignupPage/SignupPage";
@@ -19,13 +20,26 @@ import ShoppingList from "./pages/ShoppingList/ShoppingList";
 
 
 function App() {
+  
+  const [recipes, setRecipes] = useState([])
+
+  useEffect(() => {
+    service.getRecipes()
+    .then((data) => {
+      setRecipes(data)
+    })
+    .catch((err) => console.log(err));
+  }, [])
+
+
+
   return (
     <div className="App">
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/recipes" element={<AllRecipes />} />
+        <Route path="/" element={<HomePage recipes={recipes} />} />
+        <Route path="/recipes" element={<AllRecipes recipes={recipes}/>} />
         <Route path="/profile"
                element={
                 <IsPrivate>
@@ -42,8 +56,8 @@ function App() {
                 }
         />
         <Route path="/recipes/:recipesId" element={<RecipesDetails />} />
-        <Route path="/planner" element={<RecipePlanner />} />
-        <Route path="/shoppinglist" element={<ShoppingList />} />
+        <Route path="/planner" element={<RecipePlanner recipes={recipes} />} />
+        <Route path="/shoppinglist" element={<ShoppingList recipes={recipes}/>} />
 
         <Route path="/login"
               element={
