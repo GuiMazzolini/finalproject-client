@@ -10,8 +10,20 @@ import { useNavigate } from "react-router-dom";
 function RecipePlanner({recipes}) {
 
     const [recipesInPlanner, setRecipesInPlanner] = useState([])
-    const [selectedRecipes, setSelectedRecipes] = useState([])
-
+    const [plannerName, setPlannerName] = useState("")
+    const [search, setSearch] = useState("");
+    const filtered = recipes.filter((oneData) => {
+        if (!oneData.type) {
+            return false;
+        } else if (!oneData.name) {
+            return false;
+        } else {
+            return (
+                oneData.name.toLowerCase().includes(search.toLowerCase()) ||
+                oneData.type.toLowerCase().includes(search.toLowerCase())
+            );
+        }
+    });
     const navigate = useNavigate();
 
     const { user } = useContext(AuthContext);
@@ -23,7 +35,7 @@ function RecipePlanner({recipes}) {
       
       const handleClick = () => {
        PlannerService
-       .createPlanner(user, recipesInPlanner)
+       .createPlanner(user, recipesInPlanner, plannerName)
        setRecipesInPlanner("")
 
        navigate("/shoppinglist")
@@ -42,7 +54,6 @@ function RecipePlanner({recipes}) {
         array[objectIndex].quantity++;
         setRecipesInPlanner([...array])
       }
-      console.log("OBJECT", recipesInPlanner[objectIndex])
 
 
       }
@@ -60,10 +71,24 @@ function RecipePlanner({recipes}) {
 
 return (
   <>
+          <div className="title-search">
             <h1 className='recipes-title'>Create Your Meal Plan</h1>
+            <div className=" bg-sky-50">
+            <h5>Find All the recepies here!</h5>
+            <input
+                placeholder="Search"
+                type="text"
+                value={search}
+                onChange={(e) => {
+                    setSearch(e.target.value);
+                }}
+                className="w-96 border rounded border-gray-400 h-10 focus:outline-none pl-4 pr-8 text-gray-700 text-sm text-gray-500"
+            />
+            </div>
+          </div>
           <div className="total-container">
             <div className='meals-container'>
-                {recipes.map((recipe) => (
+                {filtered.map((recipe) => (
                   <>
                    <div className="clay clay-size">
                   <PlannerRecipeCard key={recipe._id} {...recipe}/>
@@ -75,7 +100,7 @@ return (
                 ))}
             </div>
             <div className="meal-results-container">
-
+            <input type="text" className="inpt-meal-name" placeholder="Plann Name" onChange={(e) => setPlannerName(e.target.value)}/>
               {recipesInPlanner && recipesInPlanner.map((each) => {
             return  <div className="meal-total">
                 <img src={each.imageUrl}  width="80px" height="80px"/>

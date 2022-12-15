@@ -1,25 +1,29 @@
 import "./HomePage.css";
-import Card from 'react-bootstrap/Card';
-import { useState, useEffect } from "react";
-import service from "../../services/service";
+import { Link } from "react-router-dom";
+import Carousel from 'react-bootstrap/Carousel';
 
 function HomePage({recipes}) {
 
   return (
-    <div>
-      <h1>New Recipes</h1>
-      <div className="new-container">
-      {recipes && recipes.slice(recipes.length - 6).map((recipe) => ( 
-        <div key={recipe.id}>
-      <Card className="container-card">
-        <Card.Img className="img-home" variant="top" src={recipe.imageUrl} />
-        <Card.Body>
-          <Card.Text>{recipe.name}</Card.Text>
-        </Card.Body>
-      </Card>
-      </div>
-      ) )}
-      </div>
+    <div className="home-container">
+      <h1>Brand New Recipes</h1>
+      <Carousel>
+    {recipes?.slice(recipes?.length - 6).reverse().map((recipe) => (
+      <Carousel.Item className="carousel-item" key={recipe?.id} interval={3000}>
+        <Link className="link" to={`/recipes/${recipe._id}`}>
+          <img
+            className="d-block w-100"
+            src={recipe?.imageUrl}
+            alt="First slide"/>
+          <Carousel.Caption>
+            <h3>{recipe?.name}</h3>
+          </Carousel.Caption>
+        </Link>
+      </Carousel.Item>
+   
+      ))}
+          
+    </Carousel>
 
     </div>
   );

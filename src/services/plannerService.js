@@ -21,8 +21,8 @@ const PlannerService = {
             .then((res) => res.data)
         },
 
-    createPlanner(user, recipes) {
-        const plannerRecipe = {user: user, recipes}
+    createPlanner(user, recipes, name) {
+        const plannerRecipe = {user: user, recipes, name}
     return api.post("/planner", plannerRecipe)
         .then(res => res.data)
 

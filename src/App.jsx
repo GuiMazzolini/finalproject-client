@@ -43,11 +43,11 @@ function App() {
         <Route path="/profile"
                element={
                 <IsPrivate>
-                  <ProfilePage />
+                  <ProfilePage recipes={recipes}/>
                 </IsPrivate>
               }
         />
-        <Route path="/addrecipes" element={<AddRecipes />} />
+        <Route path="/addrecipes"  element={<IsPrivate> <AddRecipes /> </IsPrivate>} />
         <Route path="/signup"
                element={
                 <IsAnon>
@@ -56,7 +56,7 @@ function App() {
                 }
         />
         <Route path="/recipes/:recipesId" element={<RecipesDetails />} />
-        <Route path="/planner" element={<RecipePlanner recipes={recipes} />} />
+        <Route path="/planner" element={<IsPrivate><RecipePlanner recipes={recipes}/></IsPrivate>} />
         <Route path="/shoppinglist" element={<ShoppingList recipes={recipes}/>} />
 
         <Route path="/login"

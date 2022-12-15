@@ -55,10 +55,6 @@ function RecipesDetails() {
 
                         </div>
                       </div>
-            <button> Delete Recipe</button>
-            <button> Add Recipe to Meal Plan</button>
-            <button> Update Recipe</button>
-
         </div>
     )
     }

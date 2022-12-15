@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 
 function RecipeCard ( { type, name, _id, serving, time, imageUrl, user } ) {
+    console.log(user)
     return (
         <>
             <Link className="link" to={`/recipes/${_id}`}>
@@ -24,7 +25,8 @@ function RecipeCard ( { type, name, _id, serving, time, imageUrl, user } ) {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                       {/* {user.name ? <p><small className="text-muted">Sended by {user.name}</small></p>: <></>} */}
+                        {console.log(user)}
+                       { user?.name ? <p><small className="text-muted">Sended by {user?.name}</small></p>: <></> }
 
                     </Card.Footer>
                 </div>

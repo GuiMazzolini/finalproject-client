@@ -16,7 +16,7 @@ input, textarea, select, .create-acc-btn {
     outline: none; }
   
   .wrapper--signup {
-    color: #fff;
+    color: #008148;
     min-height: 100vh;
     display: flex; }
     .wrapper--signup .image-holder {
@@ -34,7 +34,8 @@ input, textarea, select, .create-acc-btn {
   .form-inner {
     display: flex;
     flex-direction: column;
-    background: #008148;
+    background-color: rgba(240, 255, 240, 0.82);
+    /* background: #008148; */
     padding-top: 14vh;
     padding-left: 4vw;
     padding-right: 4vw; }
@@ -91,8 +92,8 @@ input, textarea, select, .create-acc-btn {
     align-items: center;
     justify-content: center;
     padding: 0;
-    background: #fff;
-    color: #008148;
+    background: #008148;
+    color: #fff;
     text-transform: uppercase;
     font-size: 17px;
     overflow: hidden;
@@ -111,7 +112,8 @@ input, textarea, select, .create-acc-btn {
       bottom: 0;
       left: 0;
       right: 0;
-      background: #86E7B8;
+      background: #fff;
+      color: #008148;
       -webkit-transform: scaleX(0);
       transform: scaleX(0);
       -webkit-transform-origin: 50%;
@@ -123,7 +125,7 @@ input, textarea, select, .create-acc-btn {
       -webkit-transition-timing-function: ease-out;
       transition-timing-function: ease-out; }
       .create-acc-btn:hover {
-      color: white; }
+      color: #008148; }
       .create-acc-btn:hover:before {
         -webkit-transform: scaleX(1);
         transform: scaleX(1); }
@@ -153,8 +155,8 @@ h6 {
     align-items: center;
     justify-content: center;
     padding: 0;
-    background: #fff;
-    color: #008148;
+    background: #008148;
+    color: #fff;
     font-size: 17px;
     overflow: hidden;
     -webkit-transform: perspective(1px) translateZ(0);
@@ -172,7 +174,8 @@ h6 {
       bottom: 0;
       left: 0;
       right: 0;
-      background: #86E7B8;
+      background: #fff;
+      color: #008148;
       -webkit-transform: scaleX(0);
       transform: scaleX(0);
       -webkit-transform-origin: 50%;
@@ -184,7 +187,7 @@ h6 {
       -webkit-transition-timing-function: ease-out;
       transition-timing-function: ease-out; }
     .login-btn:hover {
-      color: white; }
+      color: #008148; }
     .login-btn:hover:before {
         -webkit-transform: scaleX(1);
         transform: scaleX(1); 

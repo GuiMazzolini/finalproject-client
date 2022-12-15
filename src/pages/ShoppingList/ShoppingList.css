@@ -1,0 +1,4 @@
+.meals-list {
+    display: flex;
+    flex-direction: row;
+}

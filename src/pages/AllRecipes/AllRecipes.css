@@ -9,3 +9,17 @@
    justify-content: space-evenly;
    text-decoration: none !important;
 }
+
+.title-search {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   margin: 30px 400px;
+}
+
+.title-search h5 {
+   font-family: "ChelseaMarket-Regular";
+   color: #008148;
+   padding-top: 40px;
+}

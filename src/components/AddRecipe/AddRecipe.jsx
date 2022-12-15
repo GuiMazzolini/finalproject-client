@@ -78,8 +78,7 @@ function AddRecipes(props) {
         setIngredients([...ingredients, newIngredient])
         setNewIngredient({quantity: "" ,
                           measure: "",
-                          ingredient: ""})
-        
+                          ingredient: ""})  
     }
 
     const handleNewStep = (e) => {
@@ -89,10 +88,31 @@ function AddRecipes(props) {
 
     const addSteps = () => {
         setPrepare([...prepare, newStep])
-        setNewStep("")   
+        setNewStep("")
     }
+
+    function deleteStep(item) {
+      let array = [...newStep]; 
+      let index = array.indexOf(item)
+      if (index !== -1) {
+          array.splice(index, 1);
+          setNewStep(array);
+      }
+    }
+
+    function deleteIngredient(item) {
+      let array = [...ingredients]; 
+      let index = array.indexOf(item)
+      if (index !== -1) {
+          array.splice(index, 1);
+          setIngredients(array);
+      }
+    }
+
+
     return (
 
+<div className="form-container">
     <Form onSubmit={handleSubmit} className="add-form">
       <Form.Group className="mb-3">
         <Form.Label>Name of the recipe</Form.Label>
@@ -101,12 +121,14 @@ function AddRecipes(props) {
       <Form.Group className="mb-3">
         <Form.Label>Servings</Form.Label>
         <Form.Control type="number" onChange={(e) => setServing(e.target.value)}/>
-        <Form.Label>Time to prepare</Form.Label>
-        <Form.Control type="text" onChange={(e) => setTime(e.target.value)}/>
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Upload an Image</Form.Label>
-        <Form.Control type="file" onChange={(e) => handleFileUpload(e)}/>
+        <Form.Label>Time to prepare</Form.Label>
+        <Form.Control placeholder="e.g. (1 hour, 30 Minutes)" type="text" onChange={(e) => setTime(e.target.value)}/>
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Upload an Image (JPG or PNG)</Form.Label>
+        <Form.Control className=" height-fix" type="file" placeholder="" onChange={(e) => handleFileUpload(e)}/>
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>Type of Food</Form.Label>
@@ -117,29 +139,34 @@ function AddRecipes(props) {
           <option>Breakfast</option>
         </Form.Select>
         </Form.Group>
-        <Form.Label>Add Ingredients</Form.Label>
+        <Form.Label className="line-fix">Add Ingredients</Form.Label>
         <InputGroup className="mb-3">
             <Form.Control placeholder="Quantity" name="quantity" id= "quantity" value={newIngredient.quantity} onChange={handleNewIngredients}/>
-            <Form.Select placeholder="Measure" name="measure" id= "measure" value={newIngredient.measure} onChange={handleNewIngredients}>
-                <option defaultValue></option>
+            <Form.Select  name="measure" id= "measure" value={newIngredient.measure}  onChange={handleNewIngredients}>
+                <option placeholder="Measure" defaultValue></option>
                 <option value="milliliters">milliliters</option>
                 <option value="units">units</option>
                 <option value="grams">grams</option>
             </Form.Select>
             <Form.Control type="text" placeholder="Ingredient" name="ingredient" id="ingredient" value={newIngredient.ingredient} onChange={handleNewIngredients}/>
-            <InputGroup.Text onClick={addIngredients}> + </InputGroup.Text>
+            <InputGroup.Text onClick={addIngredients} > + </InputGroup.Text>
         </InputGroup>
-        <div>
-         {ingredients.length ? ingredients.map((eachIngredient) => {return `${eachIngredient.quantity} ${eachIngredient.measure} ${eachIngredient.ingredient}, ` }): <p></p>} 
-        </div>
-        <Form.Label>How to Prepare</Form.Label>
+
+        <Form.Label className="line-fix">How to Prepare</Form.Label>
         <InputGroup className="mb-3">
             <Form.Control type="text" onChange={handleNewStep} value={newStep} placeholder="Write step by step here" />
             <InputGroup.Text onClick={addSteps}>+</InputGroup.Text>
         </InputGroup >
-        {prepare.length ? prepare.map((eachStep) => {return `${eachStep}, ` }): <p></p>} 
-      <Button type="submit"> Create! </Button>
+        
+      <Button className="create-recipe-btn" type="submit"> Create! </Button>
     </Form>
+    <div className="form-inputs" id="details">
+      <p>Ingredients:</p>
+    <ul>{ingredients.length ? ingredients.map((eachIngredient) => {return <li> {eachIngredient.quantity} {eachIngredient.measure} {eachIngredient.ingredient} <img src="https://findicons.com/files/icons/1262/amora/256/delete.png" width="20px" onClick={() => deleteIngredient(eachIngredient)}/></li> }): <p></p>} </ul> 
+      <p>Method:</p>
+    <ol>{prepare.length ? prepare.map((eachStep) => {return <li>{eachStep} <img src="https://findicons.com/files/icons/1262/amora/256/delete.png" width="20px" onClick={() => deleteStep(eachStep)}/></li> }): <p></p>} </ol>
+    </div>
+  </div>
     )
     }
 

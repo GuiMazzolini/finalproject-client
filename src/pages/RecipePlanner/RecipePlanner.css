@@ -1,18 +1,23 @@
 .total-container {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-between;
+ 
+    justify-content: space-around;
+    
 }
 .meal-results-container {
-    width: 600px;
+    width: 600px !important;
     margin-left: 100px;
 }
 
 .meals-container{
     display: flex !important;
     flex-direction: row;
+
+    flex-wrap: wrap;
     justify-content: space-evenly;
     margin-right: 80px;
+    max-width: 1200px;
 
  }
 
@@ -23,6 +28,10 @@
 }
 .add-btn {
     margin: 20px 0;
+}
+
+.inpt-meal-name {
+    margin-bottom: 20px;
 }
 
 .meal-total {

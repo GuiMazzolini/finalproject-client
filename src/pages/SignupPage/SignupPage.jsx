@@ -43,11 +43,11 @@ function SignupPage() {
 			<div class="image-holder">
 				<img src={backImg} alt=""/>
 			</div>
+
 			<div class="form-inner">
 				<form onSubmit={handleSignupSubmit}>
 					<div class="form-header">
 						<h3>Sign up</h3>
-						<img src="images/sign-up.png" alt="" class="sign-up-icon" />
 					</div>
 					<div class="form-group">
 						<label for="">Username:</label>
