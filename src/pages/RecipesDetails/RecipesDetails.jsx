@@ -42,13 +42,15 @@ function RecipesDetails() {
                           <p>Time: {currentRecipe.time} </p>
                         </div>
                         <div className="ingredients-column">
-                          <ul> Ingredients:
+                          <p>Ingredients:</p>
+                          <ul> 
                             {currentRecipe.ingredients.map((item) => { 
                             return <li>{item.quantity} {item.measure} {item.ingredient}</li> })}
                           </ul>
                         </div>
                         <div className="method-column">
-                          <ol> Method:
+                          <p> Method:</p>
+                          <ol>
                               {currentRecipe.prepare.map((item) => { 
                               return <li>{item}</li> })}
                             </ol>

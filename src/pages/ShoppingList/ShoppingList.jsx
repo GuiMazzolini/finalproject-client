@@ -5,6 +5,7 @@ import { AccordionCollapse } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
+
 function ShoppingList({recipes}) {
 
     const [plannerList, setPlannerList] = useState([]);
@@ -33,9 +34,9 @@ function ShoppingList({recipes}) {
       }) 
 
     return (
-        <>
-         <h1>Meal Plann</h1>
+        <div className="container-shopping-meal">
          <div className="meals-list">
+         <h1>Meal Plann</h1>
         {lastPlann[0]?.recipes.map((recipe) => {
 
 const inner = recipes?.map(el => {
@@ -52,14 +53,15 @@ return (
 )
 })}
     </div>
- <h1>Shopping List</h1>
+
     <div className="shopping-list">
+    <h1>Shopping List</h1>
     <ul>
         {lastPlann[0]?.recipes.map((recipe) => {
 
             const inner = recipes?.map(el => {
            
-        return (recipe?._id === el?._id ? shoppingList = el?.ingredients.map((item) => {return <li>{item.quantity * recipe.quantity} {item.measure} of {item?.ingredient}</li>
+        return (recipe?._id === el?._id ? shoppingList = el?.ingredients.map((item) => {return <li ><input id="checkboxes" type="checkbox" />{item.quantity * recipe.quantity} {item.measure} of {item?.ingredient}</li>
             }) : null
   )
 })
@@ -72,7 +74,7 @@ return (
 })}
     </ul>
     </div>
-        </>
+        </div>
         )
 }
 

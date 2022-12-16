@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import PlannerRecipeCard from "../../components/RecipeCard/PlannerRecipeCard";
 import PlannerService from "../../services/plannerService";
-
+import service from "../../services/service";
 
 function ProfilePage({ recipes }) {
 
@@ -39,6 +39,17 @@ function ProfilePage({ recipes }) {
     navigate("/profile")
   }
 
+  function deleteRecipe(e) {
+    
+    service
+    .deleteRecipe(e)
+    .then((response) => {
+      console.log("deleted from database")
+    })
+    .catch((err) => console.log(err));
+    navigate("/profile")
+  }
+
   return (
     <>
       <h1 className="welcome">Welcome {user.name}</h1>
@@ -52,6 +63,8 @@ function ProfilePage({ recipes }) {
                 return (
                   <div className="clay clay-size">
                     <PlannerRecipeCard key={recipe._id} {...recipe} />
+                    <img id="img-delete" src="https://findicons.com/files/icons/1262/amora/256/delete.png"
+                      width="25px" height="25px" onClick={() => deleteRecipe(recipe._id)} />
                   </div>)
               }
               return null;
@@ -93,6 +106,7 @@ function ProfilePage({ recipes }) {
                               <Link className="link" to={`/recipes/${recipe._id}`}>
                                 {recipe.quantity} X <img className="meal-center-result" src={el.imageUrl} width="100px" height="100px" /> {el.name} 
                               </Link>
+                              
                                  </div>
                           : null
                         )

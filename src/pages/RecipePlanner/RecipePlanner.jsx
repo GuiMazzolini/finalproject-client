@@ -110,7 +110,7 @@ return (
                 width="25px" height="25px" />
               </div>
 })}
-              <button className="create-mealplan-btn" onClick={handleClick}> Save and Create Shopping List</button>
+              <button className="create-mealplan-btn" onClick={handleClick}> Create Shopping List</button>
             </div>
           </div>
   </>

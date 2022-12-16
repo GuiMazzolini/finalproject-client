@@ -92,11 +92,11 @@ function AddRecipes(props) {
     }
 
     function deleteStep(item) {
-      let array = [...newStep]; 
+      let array = [...prepare]; 
       let index = array.indexOf(item)
       if (index !== -1) {
           array.splice(index, 1);
-          setNewStep(array);
+          setPrepare(array);
       }
     }
 
@@ -137,6 +137,7 @@ function AddRecipes(props) {
           <option>Lunch / Dinner</option>
           <option>Desserts</option>
           <option>Breakfast</option>
+          <option>Snacks</option>
         </Form.Select>
         </Form.Group>
         <Form.Label className="line-fix">Add Ingredients</Form.Label>
@@ -144,9 +145,11 @@ function AddRecipes(props) {
             <Form.Control placeholder="Quantity" name="quantity" id= "quantity" value={newIngredient.quantity} onChange={handleNewIngredients}/>
             <Form.Select  name="measure" id= "measure" value={newIngredient.measure}  onChange={handleNewIngredients}>
                 <option placeholder="Measure" defaultValue></option>
-                <option value="milliliters">milliliters</option>
+                <option value="milliliters">mL</option>
                 <option value="units">units</option>
                 <option value="grams">grams</option>
+                <option value="grams">tbs</option>
+                <option value="grams">ts</option>
             </Form.Select>
             <Form.Control type="text" placeholder="Ingredient" name="ingredient" id="ingredient" value={newIngredient.ingredient} onChange={handleNewIngredients}/>
             <InputGroup.Text onClick={addIngredients} > + </InputGroup.Text>
